@@ -5,20 +5,14 @@ class PageController
     public function __construct()
     {
     }
-
     public function home(): void
     {
         $route = "home";
         require 'templates/layout.phtml';
     }
-    public function about(): void
+    public function espacePerso(): void
     {
-        $route = "about";
-        require 'templates/layout.phtml';
-    }
-    public function contact(): void
-    {
-        $route = "contact";
+        $route = "espace-perso";
         require 'templates/layout.phtml';
     }
     public function _404(): void
