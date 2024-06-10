@@ -20,16 +20,28 @@ class PageController
     }
     public function category($id): void
     {
-        //get all category selected posts
         //init manager
         $instance = new PostManager;
+        //get all posts from selected category
         $posts = $instance->findAllFromCat($_GET['category']);
         $route = "category";
         require 'templates/layout.phtml';
     }
     public function post($id): void
     {
+        //init manager
+        $instance = new PostManager;
+        //get post infos
+        $post = $instance->findOne($_GET['post']);
         $route = "post";
+        require 'templates/layout.phtml';
+    }
+    public function users(): void
+    {
+        //init manager
+        $instance = new CategoryManager;
+        $categories = $instance->findAll();
+        $route = "categories";
         require 'templates/layout.phtml';
     }
     public function _404(): void

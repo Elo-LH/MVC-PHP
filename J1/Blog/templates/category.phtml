@@ -14,7 +14,7 @@ foreach ($posts as $post) {
 
                         ?> - Date : <?= $post->getCreatedAt() ?> </p>
         <p> <?= $post->getExcerpt() ?> </p>
-        <a href="index.php/route=post&post=<?= $post->getId() ?>">Read more</a>
+        <a href="index.php?route=post&post=<?= $post->getId() ?>">Read more</a>
     </article>
 <?php
 };

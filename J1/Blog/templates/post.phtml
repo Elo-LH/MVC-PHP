@@ -1,0 +1,11 @@
+<article>
+    <h2> <?= $post->getTitle() ?> </h2>
+    <p>Written by <?php
+                    $userManager = new UserManager;
+                    $author = $userManager->findOne($post->getAuthor());
+                    echo $author->getUsername();
+
+                    ?> - Date : <?= $post->getCreatedAt() ?> </p>
+    <p> <?= $post->getExcerpt() ?> </p>
+    <p><?= $post->getContent() ?></p>
+</article>

@@ -32,6 +32,9 @@ class Router
         } else if ($get['route'] === "post") {
             $controller = new PageController;
             $controller->post($get['post']);
+        } else if ($get['route'] === "users") {
+            $controller = new PageController;
+            $controller->users();
         } else {
             $controller = new PageController;
             $controller->_404();

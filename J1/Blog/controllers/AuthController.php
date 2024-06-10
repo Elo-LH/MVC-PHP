@@ -55,7 +55,7 @@ class AuthController
         $password = $_POST['password'];
         $hash = password_hash($password, PASSWORD_DEFAULT);
         //init manager
-        $user = new User($email, $hash);
+        $user = new User($_POST['username'], $email, $hash, $_POST['role'], $_POST['createdAt']);
         $instance = new UserManager;
         //find user 
         $userFound = $instance->findOne($email);
