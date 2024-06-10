@@ -34,6 +34,8 @@
         require 'templates/connexion.phtml';
     } else if ($route === "inscription") {
         require 'templates/inscription.phtml';
+    } else if ($route === "error") {
+        require 'templates/error.phtml';
     } else {
         require 'templates/404.phtml';
     }
