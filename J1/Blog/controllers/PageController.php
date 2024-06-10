@@ -12,17 +12,18 @@ class PageController
     }
     public function categories(): void
     {
-        $route = "espace-perso";
+        $route = "categories";
         require 'templates/layout.phtml';
     }
     public function category($id): void
     {
-        $route = "espace-perso";
+        //get all category selected posts
+        $route = "categories";
         require 'templates/layout.phtml';
     }
-    public function categories(): void
+    public function post($id): void
     {
-        $route = "espace-perso";
+        $route = "post";
         require 'templates/layout.phtml';
     }
     public function _404(): void
