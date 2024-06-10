@@ -19,7 +19,8 @@ class CategoryManager extends AbstractManager
         $loadedCategories = [];
         //enter fetched users from DB into instances array
         foreach ($categories as $category) {
-            new Category($category['title'], $category['description']);
+            $catClass =  new Category($category['title'], $category['description']);
+            $catClass->setId($category['id']);
             array_push($loadedCategories, $category);
         };
         return $loadedCategories;

@@ -12,12 +12,16 @@ class PageController
     }
     public function categories(): void
     {
+        //init manager
+        $instance = new CategoryManager;
+        $categories = $instance->findAll();
         $route = "categories";
         require 'templates/layout.phtml';
     }
     public function category($id): void
     {
         //get all category selected posts
+
         $route = "categories";
         require 'templates/layout.phtml';
     }

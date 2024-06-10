@@ -1,0 +1,13 @@
+<?php
+$instance = new CategoryManager;
+$categories = $instance->findAll();
+foreach ($categories as $category) {
+?>
+    <div>
+        <h3> <a href="index.php?route=catgory&category=<?= $category['id'] ?>"><?= $category['title'] ?></a> </h3>
+        <p> <?= $category['description'] ?> </p>
+
+    </div>
+<?php
+};
+?>
