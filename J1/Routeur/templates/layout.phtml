@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Exercice Routeur MVC</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="index.php">Accueil</a>
+                </li>
+                <li>
+                    <a href="index.php?route=a-propos">À propos</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <?php
+    $router = new Router;
+    $router->handleRequest($_GET);
+    ?>
+</body>
+
+</html>
