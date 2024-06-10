@@ -1,6 +1,6 @@
 <?php
 
-class Router
+class PageController
 {
     public function __construct()
     {
