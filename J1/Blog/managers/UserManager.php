@@ -18,37 +18,41 @@ class UserManager extends AbstractManager
         $loadedUsers = [];
         //enter fetched users from DB into instances array
         foreach ($users as $user) {
-            new User($user['email'], $user['password']);
+            new User($user['username'], $user['email'], $user['password'], $user['role'], $user['created_at']);
             array_push($loadedUsers, $user);
         };
+
         return $loadedUsers;
     }
 
-    public function findOne(string $email): ?User
+    public function findOne(int $id): ?User
     {
-        $query = $this->db->prepare('SELECT * FROM users WHERE email = :email');
+        $query = $this->db->prepare('SELECT * FROM users WHERE id = :id');
         $parameters = [
-            'email' => $email,
+            'id' => $id,
         ];
         $query->execute($parameters);
         $user = $query->fetch(PDO::FETCH_ASSOC);
         //create new User with fetched user
-        if ($user == '') {
+        if ($user === '') {
             return null;
         } else {
-            $user = new User($user['email'], $user['password']);
+
+            $user = new User($user['username'], $user['email'], $user['password'], $user['role'], $user['created_at']);
+
             return $user;
         }
     }
 
     public function create(User $user): void
     {
-        $query = $this->db->prepare('INSERT INTO users(email, password) VALUES(:email, :password)');
+        $query = $this->db->prepare('INSERT INTO users(username, email, password, role, created_at) VALUES(:username, :email, :password, :role, :created_at)');
         $parameters = [
-
+            'username' => $user->getUsername(),
             'email' => $user->getEmail(),
             'password' => $user->getPassword(),
-
+            'role' => $user->getRole(),
+            'created_at' => $user->getCreatedAt(),
         ];
         $query->execute($parameters);
         $isCreated = $query->fetch(PDO::FETCH_ASSOC);
@@ -56,13 +60,14 @@ class UserManager extends AbstractManager
 
     public function update(User $user): void
     {
-        $query = $this->db->prepare("UPDATE users SET email= ':email', password=':password' ");
+        $query = $this->db->prepare("UPDATE users SET username= ':username', email= ':email', password=':password', role = ':role', created_at = ':created_at' WHERE id = :id ");
         $parameters = [
-
-
+            'id' => $user['id'],
+            'username' => $user['username'],
             'email' => $user['email'],
             'password' => $user['password'],
-
+            'role' => $user['role'],
+            'created_at' => $user['createdAt'],
         ];
         $query->execute($parameters);
         $isModified = $query->fetch(PDO::FETCH_ASSOC);
@@ -86,15 +91,5 @@ class UserManager extends AbstractManager
         $parameters = [];
         $query->execute($parameters);
         $query->fetch(PDO::FETCH_ASSOC);
-    }
-    public function getPassword(User $user): string
-    {
-        $query = $this->db->prepare("SELECT password FROM users WHERE email = :email");
-        $parameters = [
-            'email' => $user['email'],
-        ];
-        $query->execute($parameters);
-        $hash = $query->fetch(PDO::FETCH_ASSOC);
-        return $hash;
     }
 }
