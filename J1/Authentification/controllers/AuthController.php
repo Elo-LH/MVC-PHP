@@ -13,29 +13,35 @@ class AuthController
     }
     public function checkConnexion(): void
     {
-        echo $_POST;
-        $hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        //get form data
         $email = $_POST['email'];
         $password = $_POST['password'];
-
-        $user = new User($email, $password);
+        //init manager
         $instance = new UserManager;
 
-        $route = "home";
-        require 'templates/layout.phtml';
         //find user 
-        //check password match
-        $isPasswordCorrect = password_verify($passwordTest, $hashTest);
-
-        if ($isPasswordCorrect) {
-            echo "Mot de passe correct";
+        $userFound = $instance->findOne($email);
+        //if user not found in db give error
+        if (!$userFound) {
+            $route = "error";
+            $error = "Nous n'avons pas cet email en utilisateur, veuillez-vous inscrire";
+            require 'templates/layout.phtml';
+            //if user found check password
         } else {
-            echo "Mot de passe erroné";
+            $hashFound = $userFound->getPassword();
+            $isPasswordCorrect = password_verify($password, $hashFound);
+            if ($isPasswordCorrect) {
+                //connect session
+                $_SESSION['email'] = $email;
+                //redirect to home
+                $route = "home";
+                require 'templates/layout.phtml';
+            } else {
+                $route = "error";
+                $error = "Le mot de passe est erroné, veuillez réessayer";
+                require 'templates/layout.phtml';
+            }
         }
-        //redirect to espace perso if right else home ?
-        //create session !
-
-
     }
     public function inscription(): void
     {

@@ -16,7 +16,7 @@ class Router
             $controller->connexion();
         } else if ($get['route'] === "check-connexion") {
             $controller = new AuthController;
-            $controller->connexion();
+            $controller->checkConnexion();
         } else if ($get['route'] === "inscription") {
             $controller = new AuthController;
             $controller->inscription();
