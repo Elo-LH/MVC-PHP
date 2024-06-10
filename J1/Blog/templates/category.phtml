@@ -1,0 +1,21 @@
+<?php
+
+$userManager = new UserManager;
+
+foreach ($posts as $post) {
+
+?>
+    <article>
+        <h2> <?= $post->getTitle() ?> </h2>
+        <p>Written by <?php
+
+                        $author = $userManager->findOne($post->getAuthor());
+                        echo $author->getUsername();
+
+                        ?> - Date : <?= $post->getCreatedAt() ?> </p>
+        <p> <?= $post->getExcerpt() ?> </p>
+        <a href="index.php/route=post&post=<?= $post->getId() ?>">Read more</a>
+    </article>
+<?php
+};
+?>

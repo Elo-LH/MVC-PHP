@@ -21,8 +21,10 @@ class PageController
     public function category($id): void
     {
         //get all category selected posts
-
-        $route = "categories";
+        //init manager
+        $instance = new PostManager;
+        $posts = $instance->findAllFromCat($_GET['category']);
+        $route = "category";
         require 'templates/layout.phtml';
     }
     public function post($id): void

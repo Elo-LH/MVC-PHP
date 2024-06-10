@@ -4,7 +4,7 @@ $categories = $instance->findAll();
 foreach ($categories as $category) {
 ?>
     <div>
-        <h3> <a href="index.php?route=catgory&category=<?= $category['id'] ?>"><?= $category['title'] ?></a> </h3>
+        <h3> <a href="index.php?route=category&category=<?= $category['id'] ?>"><?= $category['title'] ?></a> </h3>
         <p> <?= $category['description'] ?> </p>
 
     </div>

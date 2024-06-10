@@ -3,15 +3,9 @@
 class Post
 {
     private int $id = 0;
-    private string $title;
-    private string $excerpt;
-    private string $content;
-    private int $author;
-    private string $createdAt;
     private array $categories = [];
 
-
-    public function __construct($title, $excerpt, $content, $author, $createdAt)
+    public function __construct(private string $post_title,  private string $excerpt, private string $content, private int $author, private string $createdAt)
     {
     }
 
@@ -26,11 +20,11 @@ class Post
 
     public function getTitle(): string
     {
-        return $this->title;
+        return $this->post_title;
     }
-    public function setTitle(string $title): void
+    public function setTitle(string $post_title): void
     {
-        $this->title = $title;
+        $this->post_title = $post_title;
     }
 
     public function getExcerpt(): string
