@@ -1,0 +1,9 @@
+<main>
+    <h1>Espace perso</h1>
+    <p><?php
+        if (array_filter($_SESSION)) {
+            echo "Welcome to your page " . $_SESSION['email'];
+        } else {
+            echo "Register to manage your page";
+        }; ?></p>
+</main>
