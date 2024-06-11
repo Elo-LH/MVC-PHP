@@ -2,7 +2,7 @@
     <h2> <?= $post->getTitle() ?> </h2>
     <p>Written by <?php
                     $userManager = new UserManager;
-                    $author = $userManager->findOne($post->getAuthor());
+                    $author = $userManager->findOneById($post->getAuthor());
                     echo $author->getUsername();
 
                     ?> - Date : <?= $post->getCreatedAt() ?> </p>
