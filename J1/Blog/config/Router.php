@@ -23,6 +23,9 @@ class Router
         } else if ($get['route'] === "check-inscription") {
             $controller = new AuthController;
             $controller->checkInscription();
+        } else if ($get['route'] === "deconnexion") {
+            $controller = new AuthController;
+            $controller->deconnexion();
         } else if ($get['route'] === "categories") {
             $controller = new PageController;
             $controller->categories();

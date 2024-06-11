@@ -1,8 +1,17 @@
 <main>
     <h1>Page d'accueil</h1>
-    <p>Welcome <?php
-                if (array_filter($_SESSION)) {
-                    echo $_SESSION['email'];
-                }; ?></p>
+    <?php
+    if (isset($_GET['route']) && $_GET['route'] == 'deconnexion') {
+    ?>
+        <p>You are now disconnected.</p>
+    <?php
+    } else {
+    ?>
+        <p>Welcome <?php
+                    if (array_filter($_SESSION)) {
+                        echo $_SESSION['email'];
+                    }; ?></p>
+
+    <?php } ?>
 
 </main>
