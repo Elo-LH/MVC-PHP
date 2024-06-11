@@ -1,24 +1,19 @@
 <?php
 
-class PageController
+class AdminController
 {
     public function __construct()
     {
     }
-    public function home(): void
-    {
-        $route = "home";
-        require 'templates/layout.phtml';
-    }
-    public function categories(): void
+    public function deleteUser($id): void
     {
         //init manager
-        $instance = new CategoryManager;
+        $instance = new UserManager;
         $categories = $instance->findAll();
         $route = "categories";
         require 'templates/layout.phtml';
     }
-    public function category($id): void
+    public function updateUser($id): void
     {
         //init manager
         $instance = new PostManager;
@@ -27,26 +22,13 @@ class PageController
         $route = "category";
         require 'templates/layout.phtml';
     }
-    public function post($id): void
+    public function createUser($id): void
     {
         //init manager
         $instance = new PostManager;
         //get post infos
         $post = $instance->findOne($_GET['post']);
         $route = "post";
-        require 'templates/layout.phtml';
-    }
-    public function users(): void
-    {
-        //init manager
-        $instance = new UserManager;
-        $users = $instance->findAll();
-        $route = "users";
-        require 'templates/layout.phtml';
-    }
-    public function _404(): void
-    {
-        $route = "404";
         require 'templates/layout.phtml';
     }
 }

@@ -24,6 +24,8 @@
         require 'templates/post.phtml';
     } else if ($route === "error") {
         require 'templates/error.phtml';
+    } else if ($route === "users") {
+        require 'templates/users.phtml';
     } else {
         require 'templates/404.phtml';
     }

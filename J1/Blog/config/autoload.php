@@ -2,6 +2,8 @@
 
 require "./controllers/AuthController.php";
 require "./controllers/PageController.php";
+require "./controllers/AdminController.php";
+
 require "./config/Router.php";
 
 require "./models/User.php";

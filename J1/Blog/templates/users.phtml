@@ -1,94 +1,108 @@
-<h2>Users</h2>
-<form action="logic/add-user.php" method="post">
-    <label for="userId">ID</label>
-    <input type="number" name="userId" id="userId" required>
-    <label for="username">Username</label>
-    <input type="text" name="username" id="username" required>
-    <label for="email">Email</label>
-    <input type="email" name="email" id="email" required>
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" required>
-    <label for="role">role</label>
-    <input type="text" name="role" id="role" required>
-    <label for="createdAt">Created at</label>
-    <input type="datetime-local" name="createdAt" id="createdAt" required>
-    <button type="submit">Add new User</button>
-</form>
+<?php
+if (isset($_SESSION['email'])) {
 
 
-<table class="col my-5 table table-striped">
-    <thead>
-        <tr>
-            <th>
-                #
-            </th>
-            <th>
-                Nom d'utilisateur
-            </th>
-            <th>
-                Email
-            </th>
-            <th>
-                Mot de passe
-            </th>
-            <th>
-                Rôle
-            </th>
-            <th>
-                Date de création
-            </th>
-            <th>
-                Supprimer
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        $userManager = new UserManager;
-        $users = $userManager->findAll();
-        foreach ($users as $user) {
-        ?>
+
+?>
+
+
+    <h2>Users</h2>
+    <form action="" method="post">
+        <label for="userId">ID</label>
+        <input type="number" name="userId" id="userId" required>
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" required>
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" required>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required>
+        <label for="role">role</label>
+        <input type="text" name="role" id="role" required>
+        <label for="createdAt">Created at</label>
+        <input type="datetime-local" name="createdAt" id="createdAt" required>
+        <button type="submit">Add new User</button>
+    </form>
+
+
+    <table class="col my-5 table table-striped">
+        <thead>
             <tr>
-                <td> <?= $user['id'] ?> </td>
-                <td> <?= $user['username'] ?> </td>
-                <td> <?= $user['email'] ?> </td>
-                <td> <?= $user['password'] ?> </td>
-                <td> <?= $user['role'] ?> </td>
-                <td> <?= $user['created_at'] ?> </td>
-
-                <td>
-                    <a href="logic/delete-user.php?id=<?= $user['id'] ?>" class="btn btn-danger">
-                        <scan class="bi-trash-fill"></scan>
-                    </a>
-                </td>
+                <th>
+                    #
+                </th>
+                <th>
+                    Nom d'utilisateur
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Mot de passe
+                </th>
+                <th>
+                    Rôle
+                </th>
+                <th>
+                    Date de création
+                </th>
+                <th>
+                    Supprimer
+                </th>
             </tr>
-        <?php
-        };
-        ?>
-    </tbody>
-    <tfoot>
-        <tr>
-            <th>
-                #
-            </th>
-            <th>
-                Nom d'utilisateur
-            </th>
-            <th>
-                Email
-            </th>
-            <th>
-                Mot de passe
-            </th>
-            <th>
-                Rôle
-            </th>
-            <th>
-                Date de création
-            </th>
-            <th>
-                Supprimer
-            </th>
-        </tr>
-    </tfoot>
-</table>
+        </thead>
+        <tbody>
+            <?php
+            $userManager = new UserManager;
+            $users = $userManager->findAll();
+            foreach ($users as $user) {
+            ?>
+                <tr>
+                    <td> <?= $user['id'] ?> </td>
+                    <td> <?= $user['username'] ?> </td>
+                    <td> <?= $user['email'] ?> </td>
+                    <td> <?= $user['password'] ?> </td>
+                    <td> <?= $user['role'] ?> </td>
+                    <td> <?= $user['created_at'] ?> </td>
+
+                    <td>
+                        <a href="logic/delete-user.php?id=<?= $user['id'] ?>" class="btn btn-danger">
+                            <scan class="bi-trash-fill"></scan>
+                        </a>
+                    </td>
+                </tr>
+            <?php
+            };
+            ?>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Nom d'utilisateur
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Mot de passe
+                </th>
+                <th>
+                    Rôle
+                </th>
+                <th>
+                    Date de création
+                </th>
+                <th>
+                    Supprimer
+                </th>
+            </tr>
+        </tfoot>
+    </table>
+
+<?php
+} else {
+
+    echo "Vous n'avez pas les bases";
+} ?>
