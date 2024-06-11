@@ -7,7 +7,7 @@ class Player
     public function __construct(
         private string $nickname,
         private string $bio,
-        private int $portrait,
+        private string $portrait,
         private int $team,
     ) {
     }

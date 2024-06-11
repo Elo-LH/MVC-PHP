@@ -15,7 +15,9 @@ class PlayerManager extends AbstractManager
         $players = [];
         //enter fetched users from DB into instances array
         foreach ($fetchedPlayers as $player) {
-            new Player($player['id'], $player['nickname'], $player['bio'], $player['portrait'], $player['team']);
+            $id = $player['id'];
+            $player = new Player($player['nickname'], $player['bio'], $player['portrait'], $player['team']);
+            $player->setId($id);
             array_push($players, $player);
         };
         return $players;
@@ -33,7 +35,8 @@ class PlayerManager extends AbstractManager
         if ($player === '') {
             return null;
         } else {
-            $player = new Player($player['id'], $player['nickname'], $player['bio'], $player['portrait'], $player['team']);
+            $player = new Player($player['nickname'], $player['bio'], $player['portrait'], $player['team']);
+            $player->setId($id);
             return $player;
         }
     }

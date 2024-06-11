@@ -15,7 +15,9 @@ class TeamManager extends AbstractManager
         $teams = [];
         //enter fetched users from DB into instances array
         foreach ($fetchedTeams as $team) {
-            new Team($team['id'], $team['name'], $team['description'], $team['logo']);
+            $id = $team['id'];
+            $team = new Team($team['name'], $team['description'], $team['logo']);
+            $team->setId($id);
             array_push($teams, $team);
         };
         return $teams;
@@ -33,7 +35,8 @@ class TeamManager extends AbstractManager
         if ($team === '') {
             return null;
         } else {
-            $team = new Team($team['id'], $team['name'], $team['description'], $team['logo']);
+            $team = new Team($team['name'], $team['description'], $team['logo']);
+            $team->setId($id);
             return $team;
         }
     }

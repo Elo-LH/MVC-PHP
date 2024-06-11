@@ -15,7 +15,9 @@ class MatchManager extends AbstractManager
         $matchs = [];
         //enter fetched users from DB into instances array
         foreach ($fetchedMatchs as $match) {
-            new Game($match['id'], $match['name'], $match['date'], $match['team_1'], $match['team_2'], $match['winner']);
+            $id = $match['id'];
+            $match = new Game($match['name'], $match['date'], $match['team_1'], $match['team_2'], $match['winner']);
+            $match->setId($id);
             array_push($matchs, $match);
         };
         return $matchs;
@@ -33,7 +35,8 @@ class MatchManager extends AbstractManager
         if ($match === '') {
             return null;
         } else {
-            $match = new Game($match['id'], $match['name'], $match['date'], $match['team_1'], $match['team_2'], $match['winner']);
+            $match = new Game($match['name'], $match['date'], $match['team_1'], $match['team_2'], $match['winner']);
+            $match->setId($id);
             return $match;
         }
     }

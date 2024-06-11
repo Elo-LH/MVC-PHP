@@ -11,6 +11,9 @@ class Router
         if (!isset($get['route'])) {
             $controller = new PageController;
             $controller->home();
+        } else if ($get['route'] === "home") {
+            $controller = new PageController;
+            $controller->home();
         } else if ($get['route'] === "players") {
             $controller = new PlayerController;
             $controller->players();
