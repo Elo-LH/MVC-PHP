@@ -9,26 +9,28 @@ class AdminController
     {
         //init manager
         $instance = new UserManager;
-        $categories = $instance->findAll();
-        $route = "categories";
+        $categories = $instance->delete($id);
+        $route = "users";
         require 'templates/layout.phtml';
     }
     public function updateUser($id): void
     {
         //init manager
-        $instance = new PostManager;
-        //get all posts from selected category
-        $posts = $instance->findAllFromCat($_GET['category']);
-        $route = "category";
+        $instance = new UserManager;
+        $user = new User($_POST['username'], $_POST['email'], $_POST['password'], $_POST['role'], $_POST['createdAt']);
+        $user->setId($_GET['user']);
+        $isModified = $instance->update($user);
+        $route = "users";
         require 'templates/layout.phtml';
     }
-    public function createUser($id): void
+    public function createUser(): void
     {
         //init manager
-        $instance = new PostManager;
-        //get post infos
-        $post = $instance->findOne($_GET['post']);
-        $route = "post";
+        $instance = new UserManager;
+        //get post info
+        $user = new User($_POST['username'], $_POST['email'], $_POST['password'], $_POST['role'], $_POST['createdAt']);
+        $post = $instance->create($user);
+        $route = "users";
         require 'templates/layout.phtml';
     }
 }

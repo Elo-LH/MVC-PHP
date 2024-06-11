@@ -40,6 +40,7 @@ class PageController
     {
         //init manager
         $instance = new UserManager;
+        //if userToModify
         $users = $instance->findAll();
         $route = "users";
         require 'templates/layout.phtml';

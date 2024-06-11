@@ -1,29 +1,44 @@
+<h2>Users</h2>
 <?php
 if (isset($_SESSION['email'])) {
 
-
+    if (isset($_GET['updateUser'])) {
+        $userToUpdate = $instance->findOneById($_GET['updateUser']);
+        $date = substr_replace($userToUpdate->getCreatedAt(), 'T', 10, 1);
 
 ?>
+        <form action="index.php?route=updateUser&user=<?= $_GET['updateUser'] ?>" method="post">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" value=<?= $userToUpdate->getUsername() ?> required>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" value=<?= $userToUpdate->getEmail() ?> required>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" value=<?= $userToUpdate->getPassword() ?> required>
+            <label for="role">role</label>
+            <input type="text" name="role" id="role" value=<?= $userToUpdate->getRole() ?> required>
+            <label for="createdAt">Created at</label>
+            <input type="datetime-local" name="createdAt" id="createdAt" value=<?= $date ?> required>
+            <button type="submit">Update User</button>
+        </form>
+    <?php
+    } else {
+    ?>
+        <form action="index.php?route=createUser" method="post">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" required>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required>
+            <label for="role">role</label>
+            <input type="text" name="role" id="role" required>
+            <label for="createdAt">Created at</label>
+            <input type="datetime-local" name="createdAt" id="createdAt" required>
+            <button type="submit">Add new User</button>
+        </form>
 
-
-    <h2>Users</h2>
-    <form action="" method="post">
-        <label for="userId">ID</label>
-        <input type="number" name="userId" id="userId" required>
-        <label for="username">Username</label>
-        <input type="text" name="username" id="username" required>
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" required>
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" required>
-        <label for="role">role</label>
-        <input type="text" name="role" id="role" required>
-        <label for="createdAt">Created at</label>
-        <input type="datetime-local" name="createdAt" id="createdAt" required>
-        <button type="submit">Add new User</button>
-    </form>
-
-
+    <?php
+    } ?>
     <table class="col my-5 table table-striped">
         <thead>
             <tr>
@@ -65,8 +80,11 @@ if (isset($_SESSION['email'])) {
                     <td> <?= $user['created_at'] ?> </td>
 
                     <td>
-                        <a href="logic/delete-user.php?id=<?= $user['id'] ?>" class="btn btn-danger">
-                            <scan class="bi-trash-fill"></scan>
+                        <a href="index.php?route=users&updateUser=<?= $user['id'] ?>">
+                            Modify user
+                        </a>
+                        <a href="index.php?route=deleteUser&user=<?= $user['id'] ?>">
+                            Delete user
                         </a>
                     </td>
                 </tr>

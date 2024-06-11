@@ -35,6 +35,15 @@ class Router
         } else if ($get['route'] === "users") {
             $controller = new PageController;
             $controller->users();
+        } else if ($get['route'] === "deleteUser") {
+            $controller = new AdminController;
+            $controller->deleteUser($get['user']);
+        } else if ($get['route'] === "createUser") {
+            $controller = new AdminController;
+            $controller->createUser();
+        } else if ($get['route'] === "updateUser") {
+            $controller = new AdminController;
+            $controller->updateUser($get['user']);
         } else {
             $controller = new PageController;
             $controller->_404();
