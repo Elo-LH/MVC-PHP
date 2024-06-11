@@ -75,17 +75,17 @@ class UserManager extends AbstractManager
 
     public function update(User $user): void
     {
-        $query = $this->db->prepare("UPDATE users SET username = ':username', email = ':email', password = ':password', role = ':role', created_at = ':created_at' WHERE id = :id ");
+        $query = $this->db->prepare("UPDATE users SET id = :id, username = :username, email = :email, password = :password, role = :role, created_at = :created_at WHERE id = :id ");
         $parameters = [
+            'id' => $user->getId(),
             'username' => $user->getUsername(),
             'email' => $user->getEmail(),
             'password' => $user->getPassword(),
             'role' => $user->getRole(),
             'created_at' => $user->getCreatedAt(),
-            'id' => $user->getId(),
+
         ];
         $query->execute($parameters);
-        $isModified = $query->fetch(PDO::FETCH_ASSOC);
     }
 
     public function delete(int $id): void
