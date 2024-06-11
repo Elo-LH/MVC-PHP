@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Ubuntu:wght@700&display=swap" rel="stylesheet" />
+    <title>League</title>
+</head>
+
+<body>
+
+    <?php
+    require 'templates/header.phtml';
+    if ($route === "home") {
+        require 'templates/home.phtml';
+    } else if ($route === "players") {
+        require 'templates/players.phtml';
+    } else if ($route === "player") {
+        require 'templates/player.phtml';
+    } else if ($route === "teams") {
+        require 'templates/teams.phtml';
+    } else if ($route === "team") {
+        require 'templates/team.phtml';
+    } else if ($route === "matchs") {
+        require 'templates/matchs.phtml';
+    } else if ($route === "error") {
+        require 'templates/error.phtml';
+    } else if ($route === "match") {
+        require 'templates/match.phtml';
+    } else {
+        require 'templates/404.phtml';
+    }
+    ?>
+</body>
+
+</html>

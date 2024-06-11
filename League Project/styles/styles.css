@@ -1,0 +1,207 @@
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  /* Putting default font-size to 10px */
+  font-size: 0.625em; /* fallback IE8+ */
+  font-size: calc(
+    1em * 0.625
+  ); /* IE9-IE11 math fixing. See http://bit.ly/1g4X0bX */
+  scroll-behavior: smooth;
+}
+body {
+  font-size: 1.6em; /* base font-size is equivalent "16px" */
+  background-color: #0b132b;
+  color: var(--white);
+  font-family: 'Roboto';
+}
+article {
+  margin: 2rem 1rem;
+}
+
+/*----------------------------*/
+/*          COLORS            */
+/*----------------------------*/
+
+html {
+  --darkerGrey: #0b132b;
+  --darkGrey: #1c2541;
+  --yellow: #d4b52f;
+  --green: #509d77;
+  --pink: #d97ab5;
+  --blue: #45a0ec;
+  --purple: #9e87cb;
+  --red: #d66f75;
+  --grey: #83a1bb;
+  --white: #ffffff;
+}
+.yellow-text {
+  color: var(--yellow);
+}
+.player-name {
+  color: var(--pink);
+}
+
+/*----------------------------*/
+/*          TITLES            */
+/*----------------------------*/
+
+img {
+  width: 50px;
+}
+h1,
+h2,
+.player-name,
+.page-title {
+  text-transform: uppercase;
+}
+
+/*----------------------------*/
+/*          HEADER            */
+/*----------------------------*/
+.page-title {
+  font-weight: bold;
+  font-size: 2rem;
+}
+.page-header {
+  text-align: center;
+  text-transform: uppercase;
+}
+.page-header nav {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 2rem;
+}
+.page-header nav a {
+  text-decoration: none;
+  color: var(--white);
+}
+
+/*----------------------------*/
+/*          BANNER            */
+/*----------------------------*/
+
+.intro-banner {
+  background: url(https://cdn.discordapp.com/attachments/1202537760788054076/1243180569941115022/home_background.png?ex=665089a1&is=664f3821&hm=732f4270af1c5e5d7aa6ed1fc7a2d8a94932960f8a63ffed6acc6729b8906bc1&);
+  background-size: cover;
+  text-align: center;
+  padding: 4rem 0;
+}
+.intro-banner h1 {
+  margin-bottom: 5rem;
+  margin-top: 0;
+  font-size: 3rem;
+}
+
+/*----------------------------*/
+/*          EQUIPE            */
+/*----------------------------*/
+
+.article-equipe h2 {
+  text-align: center;
+  width: 100%;
+}
+.article-equipe {
+  display: flex;
+  flex-wrap: wrap;
+}
+.article-equipe .team-info {
+  width: 25%;
+  text-align: center;
+}
+.article-equipe .team-info img {
+  width: 100%;
+}
+.team-players {
+  width: 75%;
+}
+.team-players p {
+  margin: 0;
+  text-align: right;
+}
+.team-players > p {
+  text-align: center;
+  margin-top: 7rem;
+  margin-bottom: 2rem;
+}
+.team-player-box {
+  display: flex;
+  width: 80%;
+  margin-inline: auto;
+  gap: 20%;
+}
+.team-player-card {
+  width: 33%;
+}
+.team-player-card img {
+  width: 100%;
+  margin-inline: auto;
+}
+
+/*----------------------------*/
+/*          JOUEURS           */
+/*----------------------------*/
+
+.article-players h2 {
+  color: var(--pink);
+  text-align: center;
+  margin-bottom: 4rem;
+}
+.article-players {
+  margin-top: 10rem;
+}
+.player-box {
+  display: flex;
+  justify-content: space-evenly;
+}
+.player-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25%;
+}
+.player-card img {
+  width: 100%;
+}
+.player-card p {
+  margin: 0;
+  margin-top: 1rem;
+}
+.player-card .player-name {
+  font-size: 1.8rem;
+}
+/*----------------------------*/
+/*          MATCH             */
+/*----------------------------*/
+
+.article-match {
+  margin-top: 10rem;
+}
+.article-match h2 {
+  color: var(--blue);
+  text-align: center;
+  margin-bottom: 4rem;
+  width: 100%;
+}
+.article-match {
+  display: flex;
+  flex-wrap: wrap;
+}
+.match-infos {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.match-images {
+  width: 70%;
+  display: flex;
+  gap: 10%;
+  margin-inline: auto;
+}
+.match-images img {
+  width: 30%;
+}
