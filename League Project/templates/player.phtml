@@ -1,1 +1,30 @@
-<p>Player</p>
+<?php
+$playerManager = new PlayerManager();
+$media = $playerManager->getMedia($player->getId());
+$team = $playerManager->getTeam($player->getId());
+?>
+
+<h1 class="pink-text"><?= $player->getNickname() ?></h1>
+<img src="<?= $media->getUrl() ?>" alt="<?= $media->getAlt() ?>" />
+
+<h2 class="blue-text">Ses performances</h2>
+<table>
+    <thead>
+        <tr>
+            <td>Team Adverse</td>
+            <td>Points</td>
+            <td>Assists</td>
+            <td>Victoires</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+<h2 class="blue-text"><?= $team->getName() ?></h2>

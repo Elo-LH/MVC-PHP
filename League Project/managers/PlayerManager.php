@@ -40,4 +40,56 @@ class PlayerManager extends AbstractManager
             return $player;
         }
     }
+    public function getMedia(int $id): ?Media
+    {
+        $query = $this->db->prepare('SELECT players.id as player_id, media.id as media_id, url, alt  FROM players JOIN media ON players.portrait = media.id WHERE players.id = :id');
+        $parameters = [
+            'id' => $id,
+        ];
+        $query->execute($parameters);
+        $media = $query->fetch(PDO::FETCH_ASSOC);
+        //create new player with fetched player
+        if ($media === '') {
+            return null;
+        } else {
+            $media = new Media($media['url'], $media['alt']);
+            $media->setId($id);
+            return $media;
+        }
+    }
+    public function getTeam(int $id): ?Team
+    {
+        $query = $this->db->prepare('SELECT * FROM players JOIN teams ON players.team = teams.id WHERE players.id = :id');
+        $parameters = [
+            'id' => $id,
+        ];
+        $query->execute($parameters);
+        $team = $query->fetch(PDO::FETCH_ASSOC);
+        //create new player with fetched player
+        if ($team === '') {
+            return null;
+        } else {
+            $team = new Team($team['name'], $team['description'], $team['logo']);
+            $team->setId($id);
+            return $team;
+        }
+    }
+    public function getPerformance(int $id): ?Performance
+    {
+        $query = $this->db->prepare('SELECT * FROM players JOIN player_performance ON players.team = teams.id WHERE players.id = :id');
+        $parameters = [
+            'id' => $id,
+        ];
+        $query->execute($parameters);
+        $fetchedPerformances = $query->fetchAll(PDO::FETCH_ASSOC);
+        $performances = [];
+        //enter fetched performances from DB into instances array
+        foreach ($fetchedPerformances as $performance) {
+            $id = $performance['id'];
+            $performance = new Performance($performance['nickname'], $performance['bio'], $performance['portrait'], $performance['team']);
+            $performance->setId($id);
+            array_push($performances, $performance);
+        };
+        return $performances;
+    }
 }

@@ -41,6 +41,9 @@ html {
 .yellow-text {
   color: var(--yellow);
 }
+.pink-text {
+  color: var(--pink);
+}
 .player-name {
   color: var(--pink);
 }
@@ -57,6 +60,11 @@ h2,
 .player-name,
 .page-title {
   text-transform: uppercase;
+  text-align: center;
+}
+h1 {
+  margin-top: 7rem;
+  margin-bottom: 3rem;
 }
 
 /*----------------------------*/
@@ -140,6 +148,9 @@ h2,
   width: 100%;
   margin-inline: auto;
 }
+.team-name {
+  text-transform: uppercase;
+}
 
 /*----------------------------*/
 /*          JOUEURS           */
@@ -161,7 +172,7 @@ h2,
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 25%;
+  width: max(200px, 25%);
 }
 .player-card img {
   width: 100%;
@@ -171,7 +182,12 @@ h2,
   margin-top: 1rem;
 }
 .player-card .player-name {
-  font-size: 1.8rem;
+  font-size: 2.4rem;
+  font-weight: bold;
+}
+.team-name {
+  text-transform: uppercase;
+  font-size: 1.4rem;
 }
 /*----------------------------*/
 /*          MATCH             */
@@ -204,4 +220,27 @@ h2,
 }
 .match-images img {
   width: 30%;
+}
+
+/*-----------------------------------------------------------------*/
+/*                   PAGE  JOUEURS                                 */
+/*-----------------------------------------------------------------*/
+
+.players-grid {
+  display: flex;
+  max-width: 1000px;
+  margin-inline: auto;
+  gap: 3rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.player-link-button {
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 1rem;
+  border: var(--pink) 1.2px solid;
+  border-radius: 5px;
+  margin-top: 1rem;
+  margin-bottom: 5rem;
+  font-size: 1.4rem;
 }
