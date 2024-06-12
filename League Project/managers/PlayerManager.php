@@ -74,9 +74,9 @@ class PlayerManager extends AbstractManager
             return $team;
         }
     }
-    public function getPerformance(int $id): ?Performance
+    public function getPerformance(int $id): array
     {
-        $query = $this->db->prepare('SELECT * FROM players JOIN player_performance ON players.team = teams.id WHERE players.id = :id');
+        $query = $this->db->prepare('SELECT * FROM players JOIN player_performance ON players.id = player_performance.player WHERE players.id = :id');
         $parameters = [
             'id' => $id,
         ];
@@ -86,10 +86,28 @@ class PlayerManager extends AbstractManager
         //enter fetched performances from DB into instances array
         foreach ($fetchedPerformances as $performance) {
             $id = $performance['id'];
-            $performance = new Performance($performance['nickname'], $performance['bio'], $performance['portrait'], $performance['team']);
+            $performance = new Performance($performance['player'], $performance['game'], $performance['points'], $performance['assists']);
             $performance->setId($id);
             array_push($performances, $performance);
         };
         return $performances;
+    }
+    public function getTeammates(int $id): array
+    {
+        $query = $this->db->prepare('SELECT * FROM players  WHERE team = :id');
+        $parameters = [
+            'id' => $id,
+        ];
+        $query->execute($parameters);
+        $fetchedPlayers = $query->fetchAll(PDO::FETCH_ASSOC);
+        $players = [];
+        //enter fetched players from DB into instances array
+        foreach ($fetchedPlayers as $player) {
+            $id = $player['id'];
+            $player = new Player($player['nickname'], $player['bio'], $player['portrait'], $player['team']);
+            $player->setId($id);
+            array_push($players, $player);
+        };
+        return $players;
     }
 }

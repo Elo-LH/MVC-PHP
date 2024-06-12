@@ -38,27 +38,27 @@ class Game
     {
         $this->date = $date;
     }
-    public function getTeam_1(): string
+    public function getTeam_1(): int
     {
         return $this->team_1;
     }
-    public function setTeam_1(string $team_1): void
+    public function setTeam_1(int $team_1): void
     {
         $this->team_1 = $team_1;
     }
-    public function getTeam_2(): string
+    public function getTeam_2(): int
     {
         return $this->team_2;
     }
-    public function setTeam_2(string $team_2): void
+    public function setTeam_2(int $team_2): void
     {
         $this->team_2 = $team_2;
     }
-    public function getWinner(): string
+    public function getWinner(): int
     {
         return $this->winner;
     }
-    public function setWinner(string $winner): void
+    public function setWinner(int $winner): void
     {
         $this->winner = $winner;
     }

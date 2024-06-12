@@ -2,13 +2,14 @@
 $playerManager = new PlayerManager();
 $media = $playerManager->getMedia($player->getId());
 $team = $playerManager->getTeam($player->getId());
+$performances = $playerManager->getPerformance($player->getId());
 ?>
 
 <h1 class="pink-text"><?= $player->getNickname() ?></h1>
-<img src="<?= $media->getUrl() ?>" alt="<?= $media->getAlt() ?>" />
+<img class="player-page-img" src="<?= $media->getUrl() ?>" alt="<?= $media->getAlt() ?>" />
 
-<h2 class="blue-text">Ses performances</h2>
-<table>
+<h2 class="player-team-performances blue-text">Ses performances</h2>
+<table class="player-page-performance-table">
     <thead>
         <tr>
             <td>Team Adverse</td>
@@ -18,13 +19,54 @@ $team = $playerManager->getTeam($player->getId());
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
+        <?php
+        foreach ($performances as $performance) {
+            $matchManager = new MatchManager();
+            $match = $matchManager->findOneById($performance->getGame());
+            $team1 = $matchManager->getTeam1($match->getId());
+            $team2 = $matchManager->getTeam2($match->getId());
+            $winner = $matchManager->getWinner($match->getId());
+            if ($team->getName() === $team1) {
+                $teamAdverse = $team2;
+            } else {
+                $teamAdverse = $team1;
+            }
+        ?>
+            <tr>
+                <td class="yellow-text"><?= $teamAdverse ?></td>
+                <td><?= $performance->getPoints() ?></td>
+                <td><?= $performance->getAssists() ?></td>
+                <?php if ($teamAdverse === $winner) {
+                    echo '<td class="green-text">Non</td>';
+                } else {
+                    echo '<td class="red-text">Non</td>';
+                } ?>
+            </tr>
+        <?php
+        }
+
+        ?>
+
     </tbody>
 </table>
 
-<h2 class="blue-text"><?= $team->getName() ?></h2>
+<h2 class="player-team-name yellow-text">Team <?= $team->getName() ?></h2>
+<div class="players-grid">
+    <?php
+    $teammates = $playerManager->getTeammates($player->getTeam());
+    foreach ($teammates as $teammate) {
+        $media = $playerManager->getMedia($teammate->getId());
+        if ($teammate->getId() !== $player->getId()) {
+
+
+    ?>
+            <div class="player-card">
+                <img src="<?= $media->getUrl() ?>" alt="<?= $media->getAlt() ?>" />
+                <p class="player-name"><?= $teammate->getNickname() ?></p>
+                <a class="player-link-button white-text" href="index.php?route=player&player=<?= $teammate->getId() ?>">Découvrez <?= $teammate->getNickname() ?></a>
+            </div>
+    <?php
+        }
+    }
+    ?>
+</div>

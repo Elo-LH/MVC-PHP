@@ -43,6 +43,14 @@ html {
 }
 .pink-text {
   color: var(--pink);
+  border-color: var(--white);
+}
+.white-text {
+  color: var(--white);
+  border-color: var(--white);
+}
+.blue-text {
+  color: var(--blue);
 }
 .player-name {
   color: var(--pink);
@@ -238,9 +246,38 @@ h1 {
   text-decoration: none;
   text-transform: uppercase;
   padding: 1rem;
-  border: var(--pink) 1.2px solid;
+  border: 1.2px solid;
   border-radius: 5px;
   margin-top: 1rem;
   margin-bottom: 5rem;
   font-size: 1.4rem;
+}
+
+/*-----------------------------------------------------------------*/
+/*                   PAGE  JOUEUR                                  */
+/*-----------------------------------------------------------------*/
+
+.player-team-name {
+  margin-top: 20rem;
+}
+.player-page-img {
+  display: block;
+  margin-inline: auto;
+  width: 300px;
+}
+.player-team-performances {
+  margin-top: 10rem;
+}
+.player-page-performance-table {
+  margin-inline: auto;
+  width: 80%;
+  text-align: center;
+  border: var(--darkGrey) 1.2px solid;
+  padding-bottom: 3rem;
+}
+.player-page-performance-table thead {
+  text-transform: uppercase;
+}
+.player-page-performance-table td {
+  padding-top: 2rem;
 }

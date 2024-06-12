@@ -40,4 +40,50 @@ class MatchManager extends AbstractManager
             return $match;
         }
     }
+
+    public function getTeam1(int $id): ?string
+    {
+        $query = $this->db->prepare('SELECT teams.name FROM teams JOIN games ON teams.id = games.team_1 WHERE games.id = :id LIMIT 1');
+        $parameters = [
+            'id' => $id,
+        ];
+        $query->execute($parameters);
+        $team1 = $query->fetch(PDO::FETCH_ASSOC);
+        //create new match with fetched match
+        if ($team1 === '') {
+            return null;
+        } else {
+            return $team1['name'];
+        }
+    }
+    public function getTeam2(int $id): ?string
+    {
+        $query = $this->db->prepare('SELECT teams.name FROM teams JOIN games ON teams.id = games.team_2 WHERE games.id = :id LIMIT 1');
+        $parameters = [
+            'id' => $id,
+        ];
+        $query->execute($parameters);
+        $team2 = $query->fetch(PDO::FETCH_ASSOC);
+        //create new match with fetched match
+        if ($team2 === '') {
+            return null;
+        } else {
+            return $team2['name'];
+        }
+    }
+    public function getwinner(int $id): ?string
+    {
+        $query = $this->db->prepare('SELECT teams.name FROM teams JOIN games ON teams.id = games.winner WHERE games.id = :id LIMIT 1');
+        $parameters = [
+            'id' => $id,
+        ];
+        $query->execute($parameters);
+        $winner = $query->fetch(PDO::FETCH_ASSOC);
+        //create new match with fetched match
+        if ($winner === '') {
+            return null;
+        } else {
+            return $winner['name'];
+        }
+    }
 }
