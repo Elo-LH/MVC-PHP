@@ -1,1 +1,22 @@
-<p>Team</p>
+<?php
+$teamManager = new TeamManager();
+$playerManager = new PlayerManager();
+?>
+
+<h1 class="pink-text"><?= $team->getName() ?></h1>
+
+<div class="players-grid">
+    <?php
+    $teammates = $playerManager->getTeammates($team->getId());
+    foreach ($teammates as $teammate) {
+        $media = $playerManager->getMedia($teammate->getId());
+    ?>
+        <div class="player-card">
+            <img src="<?= $media->getUrl() ?>" alt="<?= $media->getAlt() ?>" />
+            <p class="player-name pink-text"><?= $teammate->getNickname() ?></p>
+            <a class="player-link-button white-text" href="index.php?route=player&player=<?= $teammate->getId() ?>">Découvrez <?= $teammate->getNickname() ?></a>
+        </div>
+    <?php
+    }
+    ?>
+</div>

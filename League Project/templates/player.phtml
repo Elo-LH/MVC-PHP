@@ -62,7 +62,7 @@ $performances = $playerManager->getPerformance($player->getId());
     ?>
             <div class="player-card">
                 <img src="<?= $media->getUrl() ?>" alt="<?= $media->getAlt() ?>" />
-                <p class="player-name"><?= $teammate->getNickname() ?></p>
+                <p class="player-name pink-text"><?= $teammate->getNickname() ?></p>
                 <a class="player-link-button white-text" href="index.php?route=player&player=<?= $teammate->getId() ?>">Découvrez <?= $teammate->getNickname() ?></a>
             </div>
     <?php

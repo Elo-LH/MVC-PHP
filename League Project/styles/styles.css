@@ -38,6 +38,7 @@ html {
   --grey: #83a1bb;
   --white: #ffffff;
 }
+
 .yellow-text {
   color: var(--yellow);
 }
@@ -54,9 +55,6 @@ html {
 }
 .purple-text {
   color: var(--purple);
-}
-.player-name {
-  color: var(--pink);
 }
 
 /*----------------------------*/
@@ -84,6 +82,10 @@ h1 {
 .page-title {
   font-weight: bold;
   font-size: 2rem;
+}
+.page-title a {
+  color: var(--white);
+  text-decoration: none;
 }
 .page-header {
   text-align: center;
@@ -248,6 +250,7 @@ h1 {
 .player-link-button {
   text-decoration: none;
   text-transform: uppercase;
+  text-align: center;
   padding: 1rem;
   border: 1.2px solid;
   border-radius: 5px;
@@ -344,4 +347,11 @@ h1 {
 }
 .match-page-performance-table tr {
   border: var(--darkGrey) 1.2px solid;
+}
+
+/*-----------------------------------------------------------------*/
+/*                  PAGE    TEAMS                                  */
+/*-----------------------------------------------------------------*/
+
+.teams-team-name {
 }

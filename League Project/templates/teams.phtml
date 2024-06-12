@@ -1,1 +1,18 @@
-<p>Teams</p>
+<h1 class="yellow-text">Les équipes de la League</h1>
+<div class="players-grid">
+    <?php
+    $teamManager = new TeamManager();
+    $teams = $teamManager->findAll();
+
+    foreach ($teams as $team) {
+        $media = $teamManager->getMedia($team->getId());
+    ?>
+        <div class="player-card">
+            <img src="<?= $media->getUrl() ?>" alt="<?= $media->getAlt() ?>" />
+            <p class="player-name yellow-text"><?= $team->getName() ?></p>
+            <p class="white-text"><?= $team->getDescription() ?></p>
+            <a class="player-link-button yellow-text" href="index.php?route=team&team=<?= $team->getId() ?>">Découvrez <?= $team->getName() ?></a>
+        </div>
+    <?php
+    } ?>
+</div>
