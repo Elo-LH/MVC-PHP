@@ -106,7 +106,7 @@ h1 {
 /*----------------------------*/
 
 .intro-banner {
-  background: url(https://cdn.discordapp.com/attachments/1202537760788054076/1243180569941115022/home_background.png?ex=665089a1&is=664f3821&hm=732f4270af1c5e5d7aa6ed1fc7a2d8a94932960f8a63ffed6acc6729b8906bc1&);
+  background: url('../assets/home_background.png');
   background-size: cover;
   text-align: center;
   padding: 4rem 0;

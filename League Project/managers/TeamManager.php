@@ -57,4 +57,29 @@ class TeamManager extends AbstractManager
             return $media;
         }
     }
+    public function getRandomTeam(): ?team
+    {
+        //fetch teamNumber
+        $query = $this->db->prepare('SELECT id FROM teams ');
+        $parameters = [];
+        $query->execute($parameters);
+        $ids = $query->fetchAll(PDO::FETCH_ASSOC);
+        //get random id
+        $random = rand(0, count($ids));
+        //fetch team with random id
+        $query = $this->db->prepare('SELECT * FROM teams WHERE id = :id');
+        $parameters = [
+            'id' => $ids[$random]['id'],
+        ];
+        $query->execute($parameters);
+        $team = $query->fetch(PDO::FETCH_ASSOC);
+        //create new team with fetched team
+        if ($team === '') {
+            return null;
+        } else {
+            $team = new Team($team['name'], $team['description'], $team['logo']);
+            $team->setId($ids[$random]['id']);
+            return $team;
+        }
+    }
 }

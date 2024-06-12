@@ -3,27 +3,38 @@
         <h1>Tout sur la League</h1>
         <p>Les joueurs, les équipes et l'actu des matchs</p>
     </div>
+
+
+    <?php
+    $teamManager = new TeamManager();
+    $playerManager = new PlayerManager();
+    $highlightTeam = $teamManager->getRandomTeam();
+    $highlightTeamMedia = $teamManager->getMedia($highlightTeam->getId())
+    ?>
     <article class="article-equipe">
         <h2 class="yellow-text">L'équipe à la une</h2>
         <div class="team-info">
-            <h3 class="yellow-text">Angry Owls</h3>
-            <img src="https://maridoucet.sites.3wa.io/league/teams/angry-owls.png" alt="Logo Angry Owls" />
+            <h3 class="yellow-text"><?= $highlightTeam->getName() ?></h3>
+            <img src="<?= $highlightTeamMedia->getUrl() ?>" alt="<?= $highlightTeamMedia->getAlt() ?>" />
         </div>
         <div class="team-players">
             <p>Les joueurs</p>
             <div class="team-player-box">
-                <div class="team-player-card">
-                    <img src="https://maridoucet.sites.3wa.io/league/players/Ladso.png" alt="" />
-                    <p class="player-name">Ladso</p>
-                </div>
-                <div class="team-player-card">
-                    <img src="https://maridoucet.sites.3wa.io/league/players/RedWitch.png" alt="" />
-                    <p class="player-name">Redwitch</p>
-                </div>
-                <div class="team-player-card">
-                    <img src="https://maridoucet.sites.3wa.io/league/players/Soltan.png" alt="" />
-                    <p class="player-name">Soltan</p>
-                </div>
+                <?php
+                $teammates = $playerManager->getTeammates($highlightTeam->getId());
+                foreach ($teammates as $teammate) {
+                    $media = $playerManager->getMedia($teammate->getId());
+                ?>
+                    <div class="team-player-card">
+
+                        <img src="<?= $media->getUrl() ?>" alt="<?= $media->getAlt() ?>" />
+                        <p class="player-name"><?= $teammate->getNickname() ?></p>
+
+                    </div>
+                <?php
+                }
+                ?>
+
             </div>
         </div>
     </article>
