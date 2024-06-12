@@ -65,7 +65,7 @@ class TeamManager extends AbstractManager
         $query->execute($parameters);
         $ids = $query->fetchAll(PDO::FETCH_ASSOC);
         //get random id
-        $random = rand(0, count($ids));
+        $random = rand(0, (count($ids) - 1));
         //fetch team with random id
         $query = $this->db->prepare('SELECT * FROM teams WHERE id = :id');
         $parameters = [

@@ -8,6 +8,7 @@
     <?php
     $teamManager = new TeamManager();
     $playerManager = new PlayerManager();
+    $matchManager = new MatchManager();
     $highlightTeam = $teamManager->getRandomTeam();
     $highlightTeamMedia = $teamManager->getMedia($highlightTeam->getId())
     ?>
@@ -61,14 +62,31 @@
     </article>
     <article class="article-match">
         <h2>Le dernier match</h2>
-
+        <?php
+        $latestMatch = $matchManager->getLatestMatch();
+        //init teams info and imgs
+        $team1 = $matchManager->getTeam1($latestMatch->getId());
+        $mediaTeam1 = $teamManager->getMedia($latestMatch->getTeam_1());
+        $team2 = $matchManager->getTeam2($latestMatch->getId());
+        $mediaTeam2 = $teamManager->getMedia($latestMatch->getTeam_2());
+        $winner = $matchManager->getWinner($latestMatch->getId());
+        ?>
         <div class="match-images">
-            <img src="https://maridoucet.sites.3wa.io/league/teams/vendetta.png" alt="Logo Vendetta" />
+            <img <?php
+                    //if team1 winner border green 
+                    if ($team1 === $winner) {
+                        echo "class='match-winner-img'";
+                    }
+                    ?> src="<?= $mediaTeam1->getUrl() ?>" alt="<?= $mediaTeam1->getAlt() ?>" />
             <div class="match-infos">
-                <h3>Vendetta - Owls</h3>
-                <p>17/01/2024</p>
+                <h3><?= $team1 ?> - <?= $team2 ?></h3>
+                <p><?= $latestMatch->getDate() ?></p>
             </div>
-            <img src="https://maridoucet.sites.3wa.io/league/teams/angry-owls.png" alt="Logo Angry Owls" />
+            <img <?php
+                    //if team1 winner border green 
+                    if ($team2 === $winner) {
+                        echo "class='match-winner-img'";
+                    } ?> src="<?= $mediaTeam2->getUrl() ?>" alt="<?= $mediaTeam2->getAlt() ?>" />
         </div>
     </article>
 </main>

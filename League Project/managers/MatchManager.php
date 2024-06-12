@@ -104,4 +104,20 @@ class MatchManager extends AbstractManager
         };
         return $performances;
     }
+    public function getLatestMatch(): ?Game
+    {
+        $query = $this->db->prepare('SELECT * FROM games ORDER BY date DESC LIMIT 1');
+        $parameters = [];
+        $query->execute($parameters);
+        $match = $query->fetch(PDO::FETCH_ASSOC);
+        //create new match with fetched match
+        if ($match === '') {
+            return null;
+        } else {
+            $id = $match['id'];
+            $match = new Game($match['name'], $match['date'], $match['team_1'], $match['team_2'], $match['winner']);
+            $match->setId($id);
+            return $match;
+        }
+    }
 }
