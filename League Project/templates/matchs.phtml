@@ -1,1 +1,26 @@
-<p>Matchs</p>
+<h1 class="blue-text">Les matchs</h1>
+
+<?php
+$matchManager = new MatchManager();
+$teamManager = new TeamManager();
+$matchs = $matchManager->findAll();
+foreach ($matchs as $match) {
+    $team1 = $matchManager->getTeam1($match->getId());
+    $mediaTeam1 = $teamManager->getMedia($match->getTeam_1());
+    $team2 = $matchManager->getTeam2($match->getId());
+    $mediaTeam2 = $teamManager->getMedia($match->getTeam_2());
+?>
+    <article class="article-match">
+        <div class="match-images">
+            <img src="<?= $mediaTeam1->getUrl() ?>" alt="<?= $mediaTeam1->getAlt() ?>" />
+            <div class="match-infos">
+                <h3 class="matchs-match-title blue-text"><?= $team1 ?> - <?= $team2 ?></h3>
+                <p>17/01/2024</p>
+                <a class="match-link-button blue-text" href="index.php?route=match&match=<?= $match->getId() ?>">Détails du match</a>
+            </div>
+            <img src="<?= $mediaTeam2->getUrl() ?>" alt="<?= $mediaTeam1->getAlt() ?>" />
+        </div>
+    </article>
+
+<?php
+} ?>

@@ -40,4 +40,21 @@ class TeamManager extends AbstractManager
             return $team;
         }
     }
+    public function getMedia(int $id): ?Media
+    {
+        $query = $this->db->prepare('SELECT teams.id as team_id, media.id as media_id, url, alt  FROM teams JOIN media ON teams.logo = media.id WHERE teams.id = :id');
+        $parameters = [
+            'id' => $id,
+        ];
+        $query->execute($parameters);
+        $media = $query->fetch(PDO::FETCH_ASSOC);
+        //create new player with fetched player
+        if ($media === '') {
+            return null;
+        } else {
+            $media = new Media($media['url'], $media['alt']);
+            $media->setId($id);
+            return $media;
+        }
+    }
 }

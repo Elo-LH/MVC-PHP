@@ -281,3 +281,21 @@ h1 {
 .player-page-performance-table td {
   padding-top: 2rem;
 }
+
+/*-----------------------------------------------------------------*/
+/*                   PAGE  MATCHS                                  */
+/*-----------------------------------------------------------------*/
+
+.match-link-button {
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 1rem;
+  border: 1.2px solid;
+  border-radius: 5px;
+  margin-top: 1rem;
+  font-size: 1.4rem;
+}
+.matchs-match-title {
+  text-transform: uppercase;
+  font-size: 1.8rem;
+}
