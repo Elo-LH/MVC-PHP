@@ -1,1 +1,62 @@
-<p>Match</p>
+<?php
+$matchManager = new MatchManager();
+$teamManager = new TeamManager();
+$playerManager = new PlayerManager();
+//init teams info and imgs
+$team1 = $matchManager->getTeam1($match->getId());
+$mediaTeam1 = $teamManager->getMedia($match->getTeam_1());
+$team2 = $matchManager->getTeam2($match->getId());
+$mediaTeam2 = $teamManager->getMedia($match->getTeam_2());
+$winner = $matchManager->getWinner($match->getId());
+//get performances
+$performances = $matchManager->getPerformances($match->getId());
+?>
+
+<article class="match-detail">
+
+    <h1 class="blue-text"><?= $team1 ?> - <?= $team2 ?></h1>
+    <p class="blue-text">17/01/2024</p>
+
+    <div class="match-detail-imgs">
+        <img <?php
+                //if team1 winner border green 
+                if ($team1 === $winner) {
+                    echo "class='match-winner-img'";
+                }
+                ?> src="<?= $mediaTeam1->getUrl() ?>" alt="<?= $mediaTeam1->getAlt() ?>" />
+        <img <?php
+                //if team1 winner border green 
+                if ($team2 === $winner) {
+                    echo "class='match-winner-img'";
+                } ?> src="<?= $mediaTeam2->getUrl() ?>" alt="<?= $mediaTeam1->getAlt() ?>" />
+    </div>
+
+    <h2 class="purple-text">Performances</h2>
+    <table class="match-page-performance-table">
+        <thead>
+            <tr>
+                <td>Joueur</td>
+                <td>Team</td>
+                <td>Points</td>
+                <td>Assists</td>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            foreach ($performances as $performance) {
+                $player = $playerManager->findOneById($performance->getPlayer());
+                $team = $teamManager->findOneById($player->getTeam());
+            ?>
+                <tr>
+                    <td class="pink-text"><?= $player->getNickname() ?></td>
+                    <td class="yellow-text"><?= $team->getName() ?></td>
+                    <td><?= $performance->getPoints() ?></td>
+                    <td><?= $performance->getAssists() ?></td>
+                </tr>
+            <?php
+            }
+            ?>
+        </tbody>
+    </table>
+
+</article>

@@ -52,6 +52,9 @@ html {
 .blue-text {
   color: var(--blue);
 }
+.purple-text {
+  color: var(--purple);
+}
 .player-name {
   color: var(--pink);
 }
@@ -298,4 +301,47 @@ h1 {
 .matchs-match-title {
   text-transform: uppercase;
   font-size: 1.8rem;
+}
+
+/*-----------------------------------------------------------------*/
+/*                   PAGE  MATCH                                  */
+/*-----------------------------------------------------------------*/
+.match-detail p {
+  text-align: center;
+}
+.match-detail h2 {
+  margin-top: 10rem;
+}
+.match-detail-imgs {
+  width: 60%;
+  margin-inline: auto;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.match-detail-imgs img {
+  width: fit-content;
+  min-width: 100px;
+  max-width: 300px;
+}
+.match-winner-img {
+  border: var(--green) solid 2px;
+}
+
+.match-page-performance-table {
+  margin-inline: auto;
+  width: 80%;
+  text-align: center;
+  border: var(--darkGrey) 1.2px solid;
+  padding-bottom: 3rem;
+}
+.match-page-performance-table thead {
+  text-transform: uppercase;
+}
+.match-page-performance-table td {
+  padding-top: 2rem;
+}
+.match-page-performance-table tr {
+  border: var(--darkGrey) 1.2px solid;
 }
