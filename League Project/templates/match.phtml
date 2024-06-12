@@ -15,7 +15,7 @@ $performances = $matchManager->getPerformances($match->getId());
 <article class="match-detail">
 
     <h1 class="blue-text"><?= $team1 ?> - <?= $team2 ?></h1>
-    <p class="blue-text">17/01/2024</p>
+    <p class="blue-text"><?= $match->getDate() ?></p>
 
     <div class="match-detail-imgs">
         <img <?php

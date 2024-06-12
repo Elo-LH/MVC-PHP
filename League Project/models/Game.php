@@ -32,7 +32,8 @@ class Game
 
     public function getDate(): string
     {
-        return $this->date;
+        $date = new DateTime($this->date);
+        return $date->format('d/m/Y');
     }
     public function setDate(string $date): void
     {

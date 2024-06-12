@@ -15,7 +15,7 @@ foreach ($matchs as $match) {
             <img src="<?= $mediaTeam1->getUrl() ?>" alt="<?= $mediaTeam1->getAlt() ?>" />
             <div class="match-infos">
                 <h3 class="matchs-match-title blue-text"><?= $team1 ?> - <?= $team2 ?></h3>
-                <p>17/01/2024</p>
+                <p><?= $match->getDate() ?></p>
                 <a class="match-link-button blue-text" href="index.php?route=match&match=<?= $match->getId() ?>">Détails du match</a>
             </div>
             <img src="<?= $mediaTeam2->getUrl() ?>" alt="<?= $mediaTeam1->getAlt() ?>" />
