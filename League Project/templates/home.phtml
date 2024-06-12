@@ -41,21 +41,22 @@
     <article class="article-players">
         <h2>Les joueurs à la une</h2>
         <div class="player-box">
-            <div class="player-card">
-                <img src="https://maridoucet.sites.3wa.io/league/players/Dundy.png" alt="" />
-                <p class="player-name">Dundy</p>
-                <p class="team-name yellow-text">Perroquets Bavards</p>
-            </div>
-            <div class="player-card">
-                <img src="https://maridoucet.sites.3wa.io/league/players/Wofin.png" alt="" />
-                <p class="player-name">Wofin</p>
-                <p class="team-name yellow-text">Panthères</p>
-            </div>
-            <div class="player-card">
-                <img src="https://maridoucet.sites.3wa.io/league/players/Stonk.png" alt="" />
-                <p class="player-name">Stonks</p>
-                <p class="team-name yellow-text">Moineau</p>
-            </div>
+            <?php
+            $highlightPlayers = $playerManager->get3RandomPlayers();
+
+            foreach ($highlightPlayers as $player) {
+                $media = $playerManager->getMedia($player->getId());
+                $team = $playerManager->getTeam($player->getId())
+            ?>
+                <div class="player-card">
+                    <img src="<?= $media->getUrl() ?>" alt="<?= $media->getAlt() ?>" />
+                    <p class="player-name"><?= $player->getNickname() ?></p>
+                    <p class="team-name yellow-text"><?= $team->getName() ?></p>
+                    <a class="player-link-button pink-text" href="index.php?route=player&player=<?= $player->getId() ?>">Découvrez <?= $player->getNickname() ?></a>
+                </div>
+            <?php
+            }
+            ?>
         </div>
     </article>
     <article class="article-match">

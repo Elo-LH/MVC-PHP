@@ -110,4 +110,21 @@ class PlayerManager extends AbstractManager
         };
         return $players;
     }
+
+    public function get3RandomPlayers(): array
+    {
+        $query = $this->db->prepare('SELECT * FROM players ORDER BY RAND() LIMIT 3 ');
+        $parameters = [];
+        $query->execute($parameters);
+        $fetchedPlayers = $query->fetchAll(PDO::FETCH_ASSOC);
+        $players = [];
+        //enter fetched users from DB into instances array
+        foreach ($fetchedPlayers as $player) {
+            $id = $player['id'];
+            $player = new Player($player['nickname'], $player['bio'], $player['portrait'], $player['team']);
+            $player->setId($id);
+            array_push($players, $player);
+        };
+        return $players;
+    }
 }
