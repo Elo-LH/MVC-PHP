@@ -13,6 +13,24 @@ class UserManager extends AbstractManager
         parent::__construct();
     }
 
+    public function findById(int $userId): ?User
+    {
+        $query = $this->db->prepare('SELECT * FROM users WHERE id = :id');
+        $parameters = [
+            'id' => $userId,
+        ];
+        $query->execute($parameters);
+        $user = $query->fetch(PDO::FETCH_ASSOC);
+        //create new User with fetched user
+        if ($user == '') {
+            return null;
+        } else {
+            $id = $user['id'];
+            $user = new User($user['username'], $user['email'], $user['password'], $user['role'], $user['created_at']);
+            $user->setId($id);
+            return $user;
+        }
+    }
 
     public function findByEmail(string $email): ?User
     {

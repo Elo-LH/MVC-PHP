@@ -10,7 +10,9 @@ class BlogController extends AbstractController
 {
     public function home(): void
     {
-        $this->render("home", []);
+        $postManager = new PostManager;
+        $latestPosts = $postManager->findLatest();
+        $this->render("home", $latestPosts);
     }
 
     public function category(string $categoryId): void
@@ -29,11 +31,16 @@ class BlogController extends AbstractController
 
     public function post(string $postId): void
     {
-        // si le post existe
-        $this->render("post", []);
-
-        // sinon
-        $this->redirect("index.php");
+        $postManager = new PostManager;
+        $post = $postManager->findOne($postId);
+        if ($post !== "") {
+            // si le post exist
+            $data = [$post];
+            $this->render("post", $data);
+        } else {
+            // sinon
+            $this->redirect("index.php");
+        }
     }
 
     public function checkComment(): void

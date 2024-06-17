@@ -24,11 +24,19 @@ class PostManager extends AbstractManager
             return null;
         } else {
             $loadedPosts = [];
+            //init managers 
+            $userManager = new UserManager;
+            $categoryManager = new CategoryManager;
+
             //enter fetched users from DB into instances array
             foreach ($posts as $post) {
-                $id = $post['post_id'];
-                $post = new Post($post['post_title'], $post['excerpt'], $post['content'], $post['author'], $post['created_at']);
+                $id = $post['id'];
+                $author = $userManager->findById($post['author']);
+                $post = new Post($post['title'], $post['excerpt'], $post['content'], $author, $post['created_at']);
                 $post->setId($id);
+                //fetch categories of each post
+                $categories = $categoryManager->findByPost($id);
+                $post->setCategories($categories);
                 array_push($loadedPosts, $post);
             };
             return $loadedPosts;
@@ -37,6 +45,7 @@ class PostManager extends AbstractManager
 
     public function findOne(int $id): ?Post
     {
+        $userManager = new UserManager;
         $query = $this->db->prepare('SELECT * FROM posts WHERE id = :id');
         $parameters = [
             'id' => $id,
@@ -47,7 +56,10 @@ class PostManager extends AbstractManager
         if ($post === '') {
             return null;
         } else {
-            $post = new Post($post['title'], $post['excerpt'], $post['content'], $post['author'], $post['created_at']);
+            $id = $post['id'];
+            $author = $userManager->findById($post['author']);
+            $post = new Post($post['title'], $post['excerpt'], $post['content'], $author, $post['created_at']);
+            $post->setId($id);
             return $post;
         }
     }
