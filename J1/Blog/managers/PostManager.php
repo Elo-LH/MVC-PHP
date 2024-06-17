@@ -139,6 +139,3 @@ class PostManager extends AbstractManager
         $query->fetch(PDO::FETCH_ASSOC);
     }
 }
-
-
-Créer:
