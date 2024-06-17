@@ -1,0 +1,7 @@
+<?php
+$post = $data[0];
+?>
+<h1><?= $post->getTitle() ?></h1>
+<p>Written by <?= $post->getAuthor()->getUsername() ?> - <?= $post->getCreatedAt() ?> </p>
+<h2><?= $post->getExcerpt() ?></h2>
+<p><?= $post->getContent() ?></p>
