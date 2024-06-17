@@ -26,7 +26,7 @@ class UserManager extends AbstractManager
             return null;
         } else {
             $id = $user['id'];
-            $user = new User($user['username'], $user['email'], $user['password'], $user['role'], $user['created_at']);
+            $user = new User($user['username'], $user['email'], $user['password'], $user['role'], DateTime::createFromFormat('Y-m-d H:i:s', $user['created_at']));
             $user->setId($id);
             return $user;
         }
@@ -45,7 +45,7 @@ class UserManager extends AbstractManager
             return null;
         } else {
             $id = $user['id'];
-            $user = new User($user['username'], $user['email'], $user['password'], $user['role'], $user['created_at']);
+            $user = new User($user['username'], $user['email'], $user['password'], $user['role'], DateTime::createFromFormat('Y-m-d H:i:s', $user['created_at']));
             $user->setId($id);
             return $user;
         }
@@ -59,7 +59,7 @@ class UserManager extends AbstractManager
             'email' => $user->getEmail(),
             'password' => $user->getPassword(),
             'role' => $user->getRole(),
-            'created_at' => $user->getCreatedAt(),
+            'created_at' => $user->getCreatedAt()->format('Y-m-d H:i:s'),
         ];
         $query->execute($parameters);
     }

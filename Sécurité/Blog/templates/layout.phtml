@@ -36,6 +36,13 @@
                     <a class="nav-link" href="index.php?route=logout">Logout</a>
                 </li>
             </ul>
+            <?php
+            if (isset($_SESSION['user'])) {
+            ?>
+                <p><?= $_SESSION['user'] ?></p>
+            <?php
+            }
+            ?>
         </nav>
     </header>
 

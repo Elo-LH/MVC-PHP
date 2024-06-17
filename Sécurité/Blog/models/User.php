@@ -14,8 +14,8 @@ class User
         private string $username,
         private string $email,
         private string $password,
-        private string $role,
-        private string $createdAt
+        private string $role = "USER",
+        private DateTime $createdAt = new DateTime()
     ) {
     }
     public function getId(): int
@@ -60,11 +60,11 @@ class User
     {
         $this->role = $role;
     }
-    public function getCreatedAt(): string
+    public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
     }
-    public function setCreatedAt(string $createdAt): void
+    public function setCreatedAt(DateTime $createdAt): void
     {
         $this->createdAt = $createdAt;
     }
