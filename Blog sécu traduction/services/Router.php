@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author : Gaellan
  * @link : https://github.com/Gaellan
@@ -14,60 +15,37 @@ class Router
         $this->ac = new AuthController();
         $this->bc = new BlogController();
     }
-    public function handleRequest(array $get) : void
+    public function handleRequest(array $get): void
     {
-        if(!isset($get["route"]))
-        {
+        if (!isset($get["route"])) {
             $this->bc->home();
-        }
-        else if(isset($get["route"]) && $get["route"] === "register")
-        {
+        } else if (isset($get["route"]) && $get["route"] === "switch-lang") {
+            $this->ac->switchLang();
+        } else if (isset($get["route"]) && $get["route"] === "register") {
             $this->ac->register();
-        }
-        else if(isset($get["route"]) && $get["route"] === "check-register")
-        {
+        } else if (isset($get["route"]) && $get["route"] === "check-register") {
             $this->ac->checkRegister();
-        }
-        else if(isset($get["route"]) && $get["route"] === "login")
-        {
+        } else if (isset($get["route"]) && $get["route"] === "login") {
             $this->ac->login();
-        }
-        else if(isset($get["route"]) && $get["route"] === "check-login")
-        {
+        } else if (isset($get["route"]) && $get["route"] === "check-login") {
             $this->ac->checkLogin();
-        }
-        else if(isset($get["route"]) && $get["route"] === "logout")
-        {
+        } else if (isset($get["route"]) && $get["route"] === "logout") {
             $this->ac->logout();
-        }
-        else if(isset($get["route"]) && $get["route"] === "category")
-        {
-            if(isset($get["category_id"]))
-            {
+        } else if (isset($get["route"]) && $get["route"] === "category") {
+            if (isset($get["category_id"])) {
                 $this->bc->category($get["category_id"]);
-            }
-            else
-            {
+            } else {
                 $this->bc->home();
             }
-        }
-        else if(isset($get["route"]) && $get["route"] === "post")
-        {
-            if(isset($get["post_id"]))
-            {
+        } else if (isset($get["route"]) && $get["route"] === "post") {
+            if (isset($get["post_id"])) {
                 $this->bc->post($get["post_id"]);
-            }
-            else
-            {
+            } else {
                 $this->bc->home();
             }
-        }
-        else if(isset($get["route"]) && $get["route"] === "check-comment")
-        {
+        } else if (isset($get["route"]) && $get["route"] === "check-comment") {
             $this->bc->checkComment();
-        }
-        else
-        {
+        } else {
             $this->bc->home();
         }
     }

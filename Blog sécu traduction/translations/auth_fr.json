@@ -1,0 +1,20 @@
+{
+    "site_title" : "Blog sécurisé",
+    "nav_login_link" : "Connexion",
+    "nav_logout_link" : "Se déconnecter",
+    "nav_register_link" : "Créer un compte",
+    "nav_switch_link" : "Changer de langue",
+    "login_email_label" : "Email",
+    "login_password_label" : "Mot de passe",
+    "login_submit_button" : "Connexion",
+    "login_register_text" : "Vous n'avez pas encore de compte ?",
+    "login_link_text" : "Créer un compte",
+    "register_title" : "S'inscrire",
+    "register_username_label" : "Choisissez un nom d'utilisateur",
+    "register_email_label" : "Entrez votre email",
+    "register_password_label" : "Choisissez un mot de passe",
+    "register_password_confirm_label" : "Confirmez votre mot de passe",
+    "register_submit_button" : "S'inscrire",
+    "register_register_text" : "Vous avez déjà un compte ?",
+    "register_link_text" : "Se connecter"
+  }

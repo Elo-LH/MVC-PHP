@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author : Gaellan
  * @link : https://github.com/Gaellan
@@ -7,39 +8,44 @@
 
 class BlogController extends AbstractController
 {
-    public function home() : void
+
+    public function __construct()
+    {
+        $lang = $_SESSION["lang"];
+
+        parent::__construct("blog", $lang);
+    }
+
+    public function home(): void
     {
         $pm = new PostManager();
         $cm = new CategoryManager();
 
         $posts = $pm->findLatest();
-        $categories= $cm->findAll();
+        $categories = $cm->findAll();
 
-        $this->render("home", [ "posts" => $posts, "categories" => $categories]);
+        $this->render("home", ["posts" => $posts, "categories" => $categories]);
     }
 
-    public function category(string $categoryId) : void
+    public function category(string $categoryId): void
     {
         $cm = new CategoryManager();
 
         $category = $cm->findOne(intval($categoryId));
 
 
-        if($category !== null)
-        {
+        if ($category !== null) {
             $pm = new PostManager();
             $posts = $pm->findByCategory($category->getId());
             $categories = $cm->findAll();
 
             $this->render("category", ["category" => $category, "posts" => $posts, "categories" => $categories]);
-        }
-        else
-        {
+        } else {
             $this->redirect("index.php");
         }
     }
 
-    public function post(string $postId) : void
+    public function post(string $postId): void
     {
         $pm = new PostManager();
         $cm = new CategoryManager();
@@ -49,28 +55,23 @@ class BlogController extends AbstractController
         $categories = $cm->findAll();
         $comments = $com->findByPost(intval($postId));
 
-        if($post !== null)
-        {
+        if ($post !== null) {
             $this->render("post", [
                 "post" => $post,
                 "categories" => $categories,
                 "comments" => $comments
             ]);
-        }
-        else
-        {
+        } else {
             $this->redirect("index.php");
         }
     }
 
-    public function checkComment() : void
+    public function checkComment(): void
     {
-        if(isset($_POST["csrf-token"]) && isset($_POST["content"]) && isset($_POST["post-id"]) && isset($_SESSION["user"]))
-        {
+        if (isset($_POST["csrf-token"]) && isset($_POST["content"]) && isset($_POST["post-id"]) && isset($_SESSION["user"])) {
             $tokenManager = new CSRFTokenManager();
 
-            if($tokenManager->validateCSRFToken($_POST["csrf-token"]))
-            {
+            if ($tokenManager->validateCSRFToken($_POST["csrf-token"])) {
                 $um = new UserManager();
                 $pm = new PostManager();
                 $cm = new CommentManager();

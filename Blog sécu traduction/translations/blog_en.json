@@ -1,0 +1,15 @@
+{ 
+  "site_title" : "Secured Blog",
+"nav_login_link" : "Login",
+"nav_logout_link" : "Logout",
+"nav_register_link" : "Register",
+"nav_switch_link" : "Switch Language",
+    "nav_home_link" : "Secured Blog",
+    "nav_categories_link" : "Categories",
+    "latest_title" : "Latest posts",
+    "post_link" : "Read the post",
+    "comments_title" : "Comments",
+    "comment_label" : "Comment",
+    "send_button" : "Send"
+    
+  }

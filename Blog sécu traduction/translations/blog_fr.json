@@ -1,0 +1,14 @@
+{
+    "site_title" : "Blog sécurisé",
+    "nav_login_link" : "Connexion",
+    "nav_logout_link" : "Se déconnecter",
+    "nav_register_link" : "Créer un compte",
+    "nav_switch_link" : "Changer de langue",
+    "nav_home_link" : "Accueil",
+    "nav_categories_link" : "Catégories",
+     "latest_title" : "Derniers articles",
+    "post_link" : "Lire l'article",
+    "comments_title" : "Commentaires",
+    "comment_label" : "Commentaire",
+    "send_button" : "Envoyer"
+  }
