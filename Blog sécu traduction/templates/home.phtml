@@ -15,6 +15,7 @@
                         <h4 class="h6 card-subtitle mb-2 text-body-secondary">
                             <?php
                             foreach ($post->getCategories() as $category) {
+                                var_dump($category);
                                 echo "{$category["title"]} ";
                             }
                             ?>
