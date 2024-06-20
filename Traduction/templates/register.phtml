@@ -2,33 +2,33 @@
     <form>
         <fieldset class="my-1">
             <label for="username" class="form-label">
-                Choose a username
+                <?= $this->translator->translate("register_username_label") ?>
             </label>
-            <input type="text" name="username" id="username" class="form-control"/>
+            <input type="text" name="username" id="username" class="form-control" />
         </fieldset>
         <fieldset class="my-1">
             <label for="email" class="form-label">
-                Enter your email
+                <?= $this->translator->translate("register_email_label") ?>
             </label>
-            <input type="email" name="email" id="email" class="form-control"/>
+            <input type="email" name="email" id="email" class="form-control" />
         </fieldset>
         <fieldset class="my-1">
             <label for="password" class="form-label">
-                Choose a password
+                <?= $this->translator->translate("register_password_label") ?>
             </label>
-            <input type="password" name="password" id="password" class="form-control"/>
+            <input type="password" name="password" id="password" class="form-control" />
         </fieldset>
         <fieldset class="my-1">
             <label for="confirm-password" class="form-label">
-                Confirm your password
+                <?= $this->translator->translate("register_password_confirm_label") ?>
             </label>
-            <input type="password" name="confirm-password" id="confirm-password" class="form-control"/>
+            <input type="password" name="confirm-password" id="confirm-password" class="form-control" />
         </fieldset>
         <fieldset class="my-4">
-            <button type="submit" class="btn btn-primary">Register</button>
+            <button type="submit" class="btn btn-primary"> <?= $this->translator->translate("register_submit_button") ?></button>
         </fieldset>
     </form>
     <p>
-        You already have an account ? <a href="index.php"> Login here </a>
+        <?= $this->translator->translate("register_register_text") ?> <a href="index.php"> <?= $this->translator->translate("register_link_text") ?> </a>
     </p>
 </main>

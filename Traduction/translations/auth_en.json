@@ -7,5 +7,12 @@
   "login_password_label" : "Password",
   "login_submit_button" : "Login",
   "login_register_text" : "You do not yet have an account ?",
-  "login_link_text" : "Register here"
+  "login_link_text" : "Register here",
+  "register_username_label" : "Choose an username",
+  "register_email_label" : "Enter your email",
+  "register_password_label" : "Choose a password",
+  "register_password_confirm_label" : "Confirm your password",
+  "register_submit_button" : "Register",
+  "register_register_text" : "You already have an account ?",
+  "register_link_text" : "Login here"
 }
