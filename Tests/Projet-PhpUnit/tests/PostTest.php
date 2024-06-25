@@ -6,19 +6,38 @@ use PHPUnit\Framework\TestCase;
 
 class PostTest extends TestCase
 {
-    public function testCanNotbeEmptyTitle(): void
+    public function testValidPost(): void
     {
-        $string = 'user@example.com';
-
-        $email = Post::fromString($string);
-
-        $this->assertSame($string, $email->asString());
+        $post = new Post('Title', 'Content', 'title-content');
+        $this->assertSame('Title', $post->getTitle());
+        $this->assertSame('Content', $post->getContent());
+        $this->assertSame('title-content', $post->getSlug());
+        $this->assertFalse($post->isPrivate());
     }
 
-    public function testCannotBeCreatedFromInvalidEmail(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
 
-        Email::fromString('invalid');
+    public function testEmptyTitle(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Title cannot be empty');
+        new Post('', 'Content', 'title-content');
+    }
+    public function testEmptyContent(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Content cannot be empty');
+        new Post('Title', '', 'title-content');
+    }
+    public function testEmptySlug(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Slug must be URL safe and cannot be empty');
+        new Post('Title', 'Content', '');
+    }
+    public function testInvalidSlug(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Slug must be URL safe and cannot be empty');
+        new Post('Title', 'Content', 'invalid slug!!');
     }
 }

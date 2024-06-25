@@ -1,0 +1,1 @@
+{"version":1,"defects":{"PostTest::testValidPost":8,"PostTest::testEmptyTitle":7,"PostTest::testEmptyContent":7,"PostTest::testEmptySlug":7,"PostTest::testInvalidSlug":7},"times":{"PostTest::testValidPost":0.007,"PostTest::testEmptyTitle":0.002,"PostTest::testEmptyContent":0.001,"PostTest::testEmptySlug":0,"PostTest::testInvalidSlug":0}}

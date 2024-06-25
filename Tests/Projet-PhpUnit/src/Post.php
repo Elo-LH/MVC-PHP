@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 class Post
 {
 
@@ -37,11 +38,11 @@ class Post
         $this->slug = $slug;
     }
 
-    public function getPrivate(): string
+    public function isPrivate(): bool
     {
         return $this->private;
     }
-    public function setPrivate(string $private): void
+    public function setPrivate(bool $private): void
     {
         $this->private = $private;
     }
